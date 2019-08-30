@@ -44,10 +44,10 @@ description = "The AWS SDK for Python"
 name = "boto3"
 optional = false
 python-versions = "*"
-version = "1.9.218"
+version = "1.9.219"
 
 [package.dependencies]
-botocore = ">=1.12.218,<1.13.0"
+botocore = ">=1.12.219,<1.13.0"
 jmespath = ">=0.7.1,<1.0.0"
 s3transfer = ">=0.2.0,<0.3.0"
 
@@ -57,7 +57,7 @@ description = "Low-level, data-driven core of boto 3."
 name = "botocore"
 optional = false
 python-versions = "*"
-version = "1.12.218"
+version = "1.12.219"
 
 [package.dependencies]
 docutils = ">=0.10,<0.16"
@@ -147,7 +147,7 @@ description = "Finnish NLP toolkit"
 name = "finntk"
 optional = false
 python-versions = "*"
-version = "0.0.60"
+version = "0.0.61"
 
 [package.dependencies]
 appdirs = ">=1.4.3"
@@ -274,7 +274,7 @@ version = "0.0.1"
 click = ">=6.7"
 click_log = "^0.3.2"
 conllu = "^1.1"
-finntk = ">=0.0.47"
+finntk = ">=0.0.61"
 hfst = "3.15.0.0b0"
 opencc = "^0.2"
 plumbum = "^1.6.6"
@@ -282,10 +282,9 @@ pyahocorasick = "branch stiff-2018-09-20-3"
 wikiparse = "branch master"
 
 [package.source]
-reference = ""
-type = "directory"
-url = "../lextract"
-
+reference = "18af4d7bc9f75583316d90020d22d0595c28c884"
+type = "git"
+url = "../lextract/"
 [[package]]
 category = "main"
 description = "Static memory-efficient and fast Trie-like structures for Python."
@@ -455,8 +454,12 @@ description = "pyahocorasick is a fast and memory efficient library for exact or
 name = "pyahocorasick"
 optional = false
 python-versions = "*"
-version = "1.4.0"
+version = "1.1.9.dev1"
 
+[package.source]
+reference = "ca029040175eaba65719e301045dd2c9a821281e"
+type = "git"
+url = "https://github.com/frankier/pyahocorasick.git"
 [[package]]
 category = "main"
 description = "PyBloom: A Probabilistic data structure."
@@ -683,7 +686,6 @@ wordfreq = "^2.2"
 reference = "14a20dfb40d6710e1bd43467a4f11cd92ecf22cf"
 type = "git"
 url = "https://github.com/frankier/wikiparse.git"
-
 [[package]]
 category = "main"
 description = "wordfreq is a Python library for looking up the frequencies of words in many"
@@ -698,7 +700,7 @@ msgpack = "*"
 regex = ">=2017.07.11,<=2018.02.21"
 
 [metadata]
-content-hash = "1d44d0feeb00dc2c4abd3eeca8351a4b73c88731e1ef815c000ec5a12f1f9352"
+content-hash = "6fd05648c079d70ee5ab1af247e722068327234831258bce197141f058b184ea"
 python-versions = "^3.7"
 
 [metadata.hashes]
@@ -707,8 +709,8 @@ attrs = ["69c0dbf2ed392de1cb5ec704444b08a5ef81680a61cb899dc08127123af36a79", "f0
 bitarray = ["3eb500f8b9cde19e14472fcbee0195dbf0fbac006f8406a03f0cfb495dff20a0"]
 boltons = ["7aa10b0f5b015678458a7d0422961fc0c7e823c05e644094c0e564931ce0b0df", "c32b2d121331a9bc7c220050d4273f3aa359b7569cb4794188e71524603113dc"]
 boto = ["147758d41ae7240dc989f0039f27da8ca0d53734be0eb869ef16e3adcfa462e8", "ea0d3b40a2d852767be77ca343b58a9e3a4b00d9db440efb8da74b4e58025e5a"]
-boto3 = ["09cf39452a8a45e6e91ba64486e1861e0d6466d50b046d445627cc1cbdde29a1", "274708f2103e42fac72ad2b56681c26b70909594bef146a99d376c52df4ded04"]
-botocore = ["aba87b5c594ec33deb679eda0a19b32e654bf781ff1dd8f1b53dffcd7c8a4dd9", "c66f4ffccb57dcca45b0f279e7fafc0ee83dab2a37aaeb047acb2543c8408439"]
+boto3 = ["3beea1436034336f6be11f56603b4642a61130bc4fb96503ccc7e959834faec9", "c7145dadd531906dce5ae1797bdadd51cd7652ea0929136f1cb78635ad7a5df1"]
+botocore = ["1186f1016c0d93ab628f1c5c52ff181ccbe0405678c8a9a161073f716cc5a388", "69a6ec121f14ee351b0892a4b706a8b3f106df17644fbe4752af8daff21b379c"]
 certifi = ["046832c04d4e752f37383b628bc601a7ea7211496b4638f6514d0e5b9acc4939", "945e3ba63a0b9f577b1395204e13c3a231f9bc0223888be653286534e5873695"]
 chardet = ["84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae", "fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"]
 click = ["2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13", "5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"]
@@ -717,7 +719,7 @@ conllu = ["0d395884a0634be71a2c1b97ca0d5f0c4c32d64a7d5192e004f6a2b60bec183f", "7
 cycler = ["1d8a5ae1ff6c5cf9b93e8811e581232ad8920aeec647c37316ceac982b08cb2d", "cd7b2d1018258d7247a71425e9f26463dfb444d411c39569972f4ce586b0c9d8"]
 docopt = ["49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"]
 docutils = ["6c4f696463b79f1fb8ba0c594b63840ebd41f059e92b31957c46b74a4599b6d0", "9e4d7ecfc600058e07ba661411a2b7de2fd0fafa17d1a7f7361cd47b1175c827", "a2aeea129088da402665e92e0b25b04b073c04b2dce4ab65caaa38b7ce2e1a99"]
-finntk = ["98ed83091c471cde486b21669635be9b1fa779d1d18f4c76dd7b485aa9d94110", "e309250239cf88750553cba61925676a55503ac875f281e0df7d8215ed88323a"]
+finntk = ["3a93fee46aaa1afb6c72ba84f7bbfa3b02280d5a7009fb6f6a423cb4572fa2c0", "c6d4ad2f931530bf65b195650bf5cb9d79fe7c4e13a10a1633ce2a65de4e88e0"]
 gensim = ["025f5c72baf0ec64deb9c61c8d4d9269f4ec12913b968774d22cc0b046f9bfbc", "1ea2d798aae1cb80d886812a1470a5a1d5c92b7f3665fe00cd571e62dcb74f1c", "388ad255dd82da921665c344a443bf0c396c4e7789196f88882c450b3f172253", "577d01923b8b23bd970dc05b67da490d446dcdb8d7b275ab664100fe54a3428c", "58dfc3a6e84e567bb5fcc08ea37ece9609ee6a75e4deee1e6b1dbcd1703f2c9e", "6a5e892f393f80ffb2758edc8896257028923e2fad1529b5fce7af4614322faa", "9da690b4b1b2297053210f3779db5cb1b6f935a3077c4473c848677b7e4c2e00", "c16a07fbf7e6b9bb8afdf03b33d6543ac83812f036f4a25da3d4ad82eedb47cd", "c2c6042d5116ef5760fc6794b9c7219bcf7780dfd543dc099bb9501e6c1f2fdd", "cf0bce0062eade9980a95a33726c537fdb8819e08c4aec65efae937b1669873e", "d87f0b8b895416ce013c14eec19fa1096a80970547919d0f1a0d903dab63adb1", "e13fef16faf50d462ea970fd9f454f7528d08395c1a0cf81bcbf97f89f03f674", "ec5de7ff2bfa8692fa96a846bb5aae52f267fc322fbbe303c1f042d258af5766", "ee338476ae4f33e496555bdc6045d6c27a23da6d7340068b6b9056769e897896", "f40312189e57c4a6f1583836186d99a268b825c3f947de3862b595b2ff6baf8e"]
 hfst = ["3c26b641c05578ce7f3d8ac2f8ba51a173a535a7760756d3829d1d052631a230", "3e1fae730a930e64f980035974e3e6a74823c1c34dd7b8f00ea71abf599a0559", "78bab26574def77f5a66941c8a0500f3aa6bcc9930149378ecd249127eabc82a", "8884e529cb2bea9ad6389182c0b65851567c84168f0b7d8249d8711e95116057", "8a39829ab866c84f440b2c5c517a87007754e502214c59873a60270309ffb45b", "a5423c33b026d06f726b9289fe84c183d0bb1f65529af0f488e64bbfd6d37eb7", "bc490c1575ce83c48112f0a6cccb72fd512d62be9d3788754c89febce334eac1", "c10c2eb06fcdd56c3112978dd768d5c8bc20f4838773f435b00453015ad54104", "ce56058a2342cafa97e6866a3039b5841827a5f8880922e68bcb823516efe5f4", "e8fa4434df19833c054e3b4b4d22570719afb38d0c853a3ee90f79c30a38023b", "e9bca59f1ed2b4ed10ff0f017186b0f097abd89229537a68c83a73b493000030", "f67516a45e71822a144361f199f7e3bdcd20014d21e44b875c5cf143badc01a3"]
 idna = ["c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407", "ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"]
@@ -745,7 +747,7 @@ pandas = ["18d91a9199d1dfaa01ad645f7540370ba630bdcef09daaf9edf45b4b1bca0232", "3
 para = ["117a1af59db3b5650b98b3e466a89e6b96d60b4c5be6261198a19d21a64d5de6", "9354e572302adf8da42f99c054480168dc3737ea3cf1b17d129073627600c36a"]
 plumbum = ["d143f079bfb60b11e9bec09a49695ce2e55ce5ca0246877bdb0818ab7c7fc312", "df96a5facf621db4a6d682bdc93afa5ed6b107a8667c73c3f0a0f0fab4217c81"]
 portalocker = ["1ed88cff4807267ec3331d2a843529399256043851509c39487db97146dda821", "934a848531ecd03b78d780402ddbf57e518172c67f0b4b9fbe2ea253fdaf6c3f"]
-pyahocorasick = ["f9431a20e47e893cadd29f367825e882dbc6fc324a3c24c41e3ff9648e5d04b2"]
+pyahocorasick = []
 pybloom-mirror = ["78e3f62a0f3873b7df24cdc0724c6c8a91ae38fbb0dbcc9104b60a1cb55b441f"]
 pymysql = ["3943fbbbc1e902f41daf7f9165519f140c4451c179380677e6a848587042561a", "d8c059dcd81dedb85a9f034d5e22dcb4442c0b201908bede99e306d65ea7c8e7"]
 pyparsing = ["6f98a7b9397e206d78cc01df10131398f1c8b8510a2f4d97d9abd82e1aacdd80", "d9338df12903bbf5d65a0e4e87c2161968b10d2e489652bb47001d82a9b028b4"]
