@@ -44,10 +44,10 @@ description = "The AWS SDK for Python"
 name = "boto3"
 optional = false
 python-versions = "*"
-version = "1.9.219"
+version = "1.9.220"
 
 [package.dependencies]
-botocore = ">=1.12.219,<1.13.0"
+botocore = ">=1.12.220,<1.13.0"
 jmespath = ">=0.7.1,<1.0.0"
 s3transfer = ">=0.2.0,<0.3.0"
 
@@ -57,7 +57,7 @@ description = "Low-level, data-driven core of boto 3."
 name = "botocore"
 optional = false
 python-versions = "*"
-version = "1.12.219"
+version = "1.12.220"
 
 [package.dependencies]
 docutils = ">=0.10,<0.16"
@@ -284,7 +284,7 @@ wikiparse = "branch master"
 [package.source]
 reference = "18af4d7bc9f75583316d90020d22d0595c28c884"
 type = "git"
-url = "../lextract/"
+url = "https://github.com/frankier/lextract.git"
 [[package]]
 category = "main"
 description = "Static memory-efficient and fast Trie-like structures for Python."
@@ -700,7 +700,7 @@ msgpack = "*"
 regex = ">=2017.07.11,<=2018.02.21"
 
 [metadata]
-content-hash = "6fd05648c079d70ee5ab1af247e722068327234831258bce197141f058b184ea"
+content-hash = "2c4d359a1541dc260fbd32452ba32245db8a776ac0ee94d9fb7f1437e6eaf81f"
 python-versions = "^3.7"
 
 [metadata.hashes]
@@ -709,8 +709,8 @@ attrs = ["69c0dbf2ed392de1cb5ec704444b08a5ef81680a61cb899dc08127123af36a79", "f0
 bitarray = ["3eb500f8b9cde19e14472fcbee0195dbf0fbac006f8406a03f0cfb495dff20a0"]
 boltons = ["7aa10b0f5b015678458a7d0422961fc0c7e823c05e644094c0e564931ce0b0df", "c32b2d121331a9bc7c220050d4273f3aa359b7569cb4794188e71524603113dc"]
 boto = ["147758d41ae7240dc989f0039f27da8ca0d53734be0eb869ef16e3adcfa462e8", "ea0d3b40a2d852767be77ca343b58a9e3a4b00d9db440efb8da74b4e58025e5a"]
-boto3 = ["3beea1436034336f6be11f56603b4642a61130bc4fb96503ccc7e959834faec9", "c7145dadd531906dce5ae1797bdadd51cd7652ea0929136f1cb78635ad7a5df1"]
-botocore = ["1186f1016c0d93ab628f1c5c52ff181ccbe0405678c8a9a161073f716cc5a388", "69a6ec121f14ee351b0892a4b706a8b3f106df17644fbe4752af8daff21b379c"]
+boto3 = ["654c7ebd6d089d5af634a8121f3960e50e283643660abcba07e602ac237f4839", "f114b586c307f73a46d6dfe9dfb1c37865354f48fc749794d96517527424d1f5"]
+botocore = ["748fe4ee5cc8b10ef09e52c740b488402d6f6d4d1f0dde0c936da232b42b1bdd", "9ffd9264e4ad999d2929cfe1c7e413d4cdf76a8bd92f011dce31874f056d2e18"]
 certifi = ["046832c04d4e752f37383b628bc601a7ea7211496b4638f6514d0e5b9acc4939", "945e3ba63a0b9f577b1395204e13c3a231f9bc0223888be653286534e5873695"]
 chardet = ["84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae", "fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"]
 click = ["2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13", "5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"]
