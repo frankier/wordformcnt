@@ -282,7 +282,7 @@ pyahocorasick = "branch stiff-2018-09-20-3"
 wikiparse = "branch master"
 
 [package.source]
-reference = "18af4d7bc9f75583316d90020d22d0595c28c884"
+reference = "b64877010945949679114a07b1d3f92bc8cf2856"
 type = "git"
 url = "https://github.com/frankier/lextract.git"
 [[package]]
@@ -700,7 +700,7 @@ msgpack = "*"
 regex = ">=2017.07.11,<=2018.02.21"
 
 [metadata]
-content-hash = "2c4d359a1541dc260fbd32452ba32245db8a776ac0ee94d9fb7f1437e6eaf81f"
+content-hash = "5d41338905928481818f54877fa467f9bd13c4090e27d6a9ace7d52401ba4770"
 python-versions = "^3.7"
 
 [metadata.hashes]

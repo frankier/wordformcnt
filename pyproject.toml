@@ -8,7 +8,7 @@ authors = ["Frankie Robertson <frankie@robertson.name>"]
 python = "^3.7"
 conllu = "^1.4"
 finntk = ">=0.0.61"
-lextract = {git = "https://github.com/frankier/lextract.git", rev = "18af4d7bc9f75583316d90020d22d0595c28c884"}
+lextract = {git = "https://github.com/frankier/lextract.git", rev = "b64877010945949679114a07b1d3f92bc8cf2856"}
 matplotlib = "^3.1"
 
 [tool.poetry.dev-dependencies]
