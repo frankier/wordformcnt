@@ -3,6 +3,7 @@ import pickle
 from functools import reduce
 import pandas
 from consts import (LEM, CMP, SCH, MWE)
+from collections import Counter
 
 
 def mk_cnt_filter(*matches):
@@ -17,7 +18,7 @@ def main():
     for infn in sys.argv[1:-1]:
         with open(infn, "rb") as inf:
             counters.append(pickle.load(inf))
-    total = reduce(lambda a, b: a.update(b), counters)
+    total = reduce(lambda a, b: a + b, counters, Counter)
     df = pandas.DataFrame([(lemma, typ, cnt) for (lemma, typ), cnt in total.items()], columns=("lemma", "typ", "cnt"))
     df["rank"] = df["cnt"].rank(method="first", ascending=False)
     df.sort_values("rank", inplace=True, ascending=False)
