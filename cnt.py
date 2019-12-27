@@ -26,8 +26,9 @@ def ud_feats_to_omor_lextract(lemma, pos, feats):
 @click.argument('inf', type=click.File('r'))
 @click.argument("outf", type=click.File("wb"))
 def main(do_lextract, inf, outf):
-    session = get_session()
-    conn = get_connection(session)
+    if do_lextract:
+        session = get_session()
+        conn = get_connection(session)
     cnt = Counter()
 
     for sent_idx, sent in enumerate(conllu.parse_incr(inf)):
