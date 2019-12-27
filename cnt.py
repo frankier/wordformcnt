@@ -6,6 +6,7 @@ from finntk.omor.anlys import ud_to_omor, IGNORE_ALL, IGNORE_VERB, IGNORE_NOUN
 import conllu
 from wikiparse.utils.db import get_session
 from consts import (LEM, CMP, SCH, MWE)
+import click
 
 
 def ud_feats_to_omor_lextract(lemma, pos, feats):
@@ -20,13 +21,16 @@ def ud_feats_to_omor_lextract(lemma, pos, feats):
     return filtered
 
 
-def main():
-    assert len(sys.argv) >= 2
+@click.command()
+@click.option("--do-lextract/--no-lextract", default=True)
+@click.argument('inf', type=click.File('r'))
+@click.argument("outf", type=click.File("wb"))
+def main(do_lextract, inf, outf):
     session = get_session()
     conn = get_connection(session)
     cnt = Counter()
 
-    for sent_idx, sent in enumerate(conllu.parse_incr(sys.stdin)):
+    for sent_idx, sent in enumerate(conllu.parse_incr(inf)):
         lemma_map = {}
         all_lemma_feats = []
         for tok_idx, tok in enumerate(sent):
@@ -41,19 +45,20 @@ def main():
             del omor_tok["word_id"]
             lemma_map.setdefault(lemma, []).append(tok_idx)
             all_lemma_feats.append({lemma: [omor_tok]})
-        extracted = extract_toks_indexed(conn, lemma_map, all_lemma_feats)
-        for matching, payload in extracted:
-            form = payload["form"].lower()
-            if payload["type"] == "multiword":
-                cnt[(form, MWE)] += 1
-            elif payload["type"] == "frame":
-                cnt[(form, SCH)] += 1
-            else:
-                assert False
+        if do_lextract:
+            extracted = extract_toks_indexed(conn, lemma_map, all_lemma_feats)
+            for matching, payload in extracted:
+                form = payload["form"].lower()
+                if payload["type"] == "multiword":
+                    cnt[(form, MWE)] += 1
+                elif payload["type"] == "frame":
+                    cnt[(form, SCH)] += 1
+                else:
+                    assert False
         if (sent_idx % 1000) == 999:
             print("@ sent {}".format(sent_idx + 1))
 
-    pickle.dump(cnt, open(sys.argv[1], 'wb'))
+    pickle.dump(cnt, outf)
 
 
 if __name__ == "__main__":

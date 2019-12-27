@@ -10,6 +10,7 @@ conllu = "^1.4"
 finntk = ">=0.0.61"
 lextract = {git = "https://github.com/frankier/lextract.git", rev = "ed34acc3d4c3568525142659476307c5bdfbf3a3"}
 matplotlib = "^3.1"
+click = "^7.0"
 
 [tool.poetry.dev-dependencies]
 

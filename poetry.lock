@@ -772,7 +772,7 @@ jieba = ["jieba"]
 mecab = ["mecab-python3"]
 
 [metadata]
-content-hash = "a4b5ba28a02a03889c43eca86069be56201bec8ca08dfdb5674ef406701cb53d"
+content-hash = "d3d83dc3d396094a2ef17fd8f04bd8da40de1dfa1ff50b30f423ba11fd77b6b1"
 python-versions = "^3.7"
 
 [metadata.files]
