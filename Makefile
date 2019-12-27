@@ -1,4 +1,4 @@
-pkls := $(patsubst ${CORPUS}/%.gz,%.counts.pkl,$(wildcard ${CORPUS}/*.gz))
+pkls := $(patsubst %.gz,%.counts.pkl,$(wildcard ${CORPUS}/*.gz))
 
 all: counts.df.pkl
 
@@ -6,4 +6,4 @@ all: counts.df.pkl
 	zcat $< | python cnt.py $(CNTFLAGS) - $@
 
 counts.df.pkl: $(pkls)
-	python join.py $* $@
+	python join.py $^ $@
