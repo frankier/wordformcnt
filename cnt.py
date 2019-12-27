@@ -30,10 +30,10 @@ def main():
         lemma_map = {}
         all_lemma_feats = []
         for tok_idx, tok in enumerate(sent):
-            lemma = tok["lemma"]
+            lemma = tok["lemma"].lower()
             pos = tok["upostag"]
             if pos not in ("PUNCT", "SYM", "NUM"):
-                if "#" in lemma:
+                if "#" in lemma or "-" in lemma:
                     cnt[(lemma, CMP)] += 1
                 else:
                     cnt[(lemma, LEM)] += 1
@@ -43,7 +43,7 @@ def main():
             all_lemma_feats.append({lemma: [omor_tok]})
         extracted = extract_toks_indexed(conn, lemma_map, all_lemma_feats)
         for matching, payload in extracted:
-            form = payload["form"]
+            form = payload["form"].lower()
             if payload["type"] == "multiword":
                 cnt[(form, MWE)] += 1
             elif payload["type"] == "frame":
