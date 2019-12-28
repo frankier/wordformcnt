@@ -2,8 +2,9 @@ import sys
 import pickle
 from functools import reduce
 import pandas
-from consts import (LEM, CMP, SCH, MWE)
+from consts import LEM, CMP, SCH, MWE
 from collections import Counter
+import click
 
 
 def mk_cnt_filter(*matches):
@@ -12,7 +13,9 @@ def mk_cnt_filter(*matches):
     return res
 
 
-def main():
+@click.command()
+@click.option("--do-lextract/--no-lextract", default=True)
+def main(do_lextract):
     assert len(sys.argv) >= 3
     counters = []
     for infn in sys.argv[1:-1]:
@@ -24,14 +27,18 @@ def main():
     df.sort_values("rank", inplace=True, ascending=False)
     df["tokcnt"] = df.apply(mk_cnt_filter(LEM, CMP), 1)
     df["cmpcnt"] = df.apply(mk_cnt_filter(CMP), 1)
-    df["schcnt"] = df.apply(mk_cnt_filter(SCH), 1)
-    df["mwecnt"] = df.apply(mk_cnt_filter(MWE), 1)
+    if do_lextract:
+        df["schcnt"] = df.apply(mk_cnt_filter(SCH), 1)
+        df["mwecnt"] = df.apply(mk_cnt_filter(MWE), 1)
     df[["cumtoks", "cumcmps", "cumschs", "cummwes"]] = df[["tokcnt", "cmpcnt", "schcnt", "mwecnt"]].cumsum()
+    tottoks = df["cumtoks"][0]
+    df["freq"] = df.apply(lambda row: row["cumtoks"] / tottoks, 1)
     df["cmpspertok"] = df.apply(lambda row: row["cumcmps"] / row["cumtoks"], 1)
-    df["schspertok"] = df.apply(lambda row: row["cumschs"] / row["cumtoks"], 1)
-    df["mwespertok"] = df.apply(lambda row: row["cummwes"] / row["cumtoks"], 1)
-    df["allmwespertok"] = df.apply(lambda row: (row["cumschs"] + row["cummwes"]) / row["cumtoks"], 1)
-    df.drop(columns=["cumtoks", "cumcmps", "cumschs", "cummwes", "tokcnt", "cmpcnt", "schcnt", "mwecnt"], inplace=True)
+    if do_lextract:
+        df["schspertok"] = df.apply(lambda row: row["cumschs"] / row["cumtoks"], 1)
+        df["mwespertok"] = df.apply(lambda row: row["cummwes"] / row["cumtoks"], 1)
+        df["allmwespertok"] = df.apply(lambda row: (row["cumschs"] + row["cummwes"]) / row["cumtoks"], 1)
+    df.drop(columns=["cumtoks", "cumcmps", "cumschs", "cummwes", "tokcnt", "cmpcnt", "schcnt", "mwecnt"], inplace=True, errors="ignore")
     df.set_index("rank", inplace=True)
 
     pickle.dump(df, open(sys.argv[-1], 'wb'))
