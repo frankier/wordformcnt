@@ -36,7 +36,7 @@ def main(infs, outf, do_lextract):
         cum_lbls += ["cumschs", "cummwes"]
         cnt_lbls += ["schcnt", "mwecnt"]
     df[cum_lbls] = df[cnt_lbls].cumsum()
-    tottoks = df["cumtoks"][0]
+    tottoks = df["cumtoks"].iloc[-1]
     df["freq"] = df["cumtoks"] / tottoks
     df["cmpspertok"] = df["cumcmps"] / df["cumtoks"]
     if do_lextract:
