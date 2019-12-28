@@ -13,7 +13,7 @@ def mk_cnt_filter(*matches):
 
 
 @click.command()
-@click.argument("infs", multiple=True, type=click.Path())
+@click.argument("infs", nargs=-1, type=click.Path())
 @click.argument("outf", type=click.File("wb"))
 @click.option("--do-lextract/--no-lextract", default=True)
 def main(infs, outf, do_lextract):
