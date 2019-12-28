@@ -28,10 +28,14 @@ def main(infs, outf, do_lextract):
     df.sort_values("rank", inplace=True, ascending=False)
     df["tokcnt"] = np.where(df["typ"].isin((LEM, CMP)), df["cnt"], 0)
     df["cmpcnt"] = np.where(df["typ"] == CMP, df["cnt"], 0)
+    cum_lbls = ["cumtoks", "cumcmps"]
+    cnt_lbls = ["tokcnt", "cmpcnt"]
     if do_lextract:
         df["schcnt"] = np.where(df["typ"] == SCH, df["cnt"], 0)
         df["mwecnt"] = np.where(df["typ"] == MWE, df["cnt"], 0)
-    df[["cumtoks", "cumcmps", "cumschs", "cummwes"]] = df[["tokcnt", "cmpcnt", "schcnt", "mwecnt"]].cumsum()
+        cum_lbls += ["cumschs", "cummwes"]
+        cnt_lbls += ["schcnt", "mwecnt"]
+    df[cum_lbls] = df[cnt_lbls].cumsum()
     tottoks = df["cumtoks"][0]
     df["freq"] = df["cumtoks"] / tottoks
     df["cmpspertok"] = df["cumcmps"] / df["cumtoks"]
