@@ -1,4 +1,3 @@
-import sys
 import pickle
 from functools import reduce
 import pandas
@@ -14,11 +13,12 @@ def mk_cnt_filter(*matches):
 
 
 @click.command()
+@click.argument("infs", multiple=True, type=click.Path())
+@click.argument("outf", type=click.File("wb"))
 @click.option("--do-lextract/--no-lextract", default=True)
-def main(do_lextract):
-    assert len(sys.argv) >= 3
+def main(infs, outf, do_lextract):
     counters = []
-    for infn in sys.argv[1:-1]:
+    for infn in infs:
         with open(infn, "rb") as inf:
             counters.append(pickle.load(inf))
     total = reduce(lambda a, b: a + b, counters, Counter())
@@ -41,7 +41,7 @@ def main(do_lextract):
     df.drop(columns=["cumtoks", "cumcmps", "cumschs", "cummwes", "tokcnt", "cmpcnt", "schcnt", "mwecnt"], inplace=True, errors="ignore")
     df.set_index("rank", inplace=True)
 
-    pickle.dump(df, open(sys.argv[-1], 'wb'))
+    pickle.dump(df, outf)
 
 
 if __name__ == "__main__":
