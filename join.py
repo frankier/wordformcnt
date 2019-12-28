@@ -4,6 +4,7 @@ import pandas
 from consts import LEM, CMP, SCH, MWE
 from collections import Counter
 import click
+import numpy as np
 
 
 def mk_cnt_filter(*matches):
@@ -25,19 +26,19 @@ def main(infs, outf, do_lextract):
     df = pandas.DataFrame([(lemma, typ, cnt) for (lemma, typ), cnt in total.items()], columns=("lemma", "typ", "cnt"))
     df["rank"] = df["cnt"].rank(method="first", ascending=False)
     df.sort_values("rank", inplace=True, ascending=False)
-    df["tokcnt"] = df.apply(mk_cnt_filter(LEM, CMP), 1)
-    df["cmpcnt"] = df.apply(mk_cnt_filter(CMP), 1)
+    df["tokcnt"] = np.where(df["typ"].isin((LEM, CMP)), df["cnt"], 0)
+    df["cmpcnt"] = np.where(df["typ"] == CMP, df["cnt"], 0)
     if do_lextract:
-        df["schcnt"] = df.apply(mk_cnt_filter(SCH), 1)
-        df["mwecnt"] = df.apply(mk_cnt_filter(MWE), 1)
+        df["schcnt"] = np.where(df["typ"] == SCH, df["cnt"], 0)
+        df["mwecnt"] = np.where(df["typ"] == MWE, df["cnt"], 0)
     df[["cumtoks", "cumcmps", "cumschs", "cummwes"]] = df[["tokcnt", "cmpcnt", "schcnt", "mwecnt"]].cumsum()
     tottoks = df["cumtoks"][0]
-    df["freq"] = df.apply(lambda row: row["cumtoks"] / tottoks, 1)
-    df["cmpspertok"] = df.apply(lambda row: row["cumcmps"] / row["cumtoks"], 1)
+    df["freq"] = df["cumtoks"] / tottoks
+    df["cmpspertok"] = df["cumcmps"] / df["cumtoks"]
     if do_lextract:
-        df["schspertok"] = df.apply(lambda row: row["cumschs"] / row["cumtoks"], 1)
-        df["mwespertok"] = df.apply(lambda row: row["cummwes"] / row["cumtoks"], 1)
-        df["allmwespertok"] = df.apply(lambda row: (row["cumschs"] + row["cummwes"]) / row["cumtoks"], 1)
+        df["schspertok"] = df["cumschs"] / df["cumtoks"]
+        df["mwespertok"] = df["cummwes"] / df["cumtoks"]
+        df["allmwespertok"] = (df["cumschs"] + df["cummwes"]) / df["cumtoks"]
     df.drop(columns=["cumtoks", "cumcmps", "cumschs", "cummwes", "tokcnt", "cmpcnt", "schcnt", "mwecnt"], inplace=True, errors="ignore")
     df.set_index("rank", inplace=True)
 
