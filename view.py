@@ -28,13 +28,21 @@ def main(inf, outf, cmps_only, logx, mark, mark_max, cnt):
     fig.set_size_inches(645.0 / 72, 441.0 / 72)
 
     def mark_at(mark_rank):
-        plt.axvline(mark_rank, linestyle="--", color="red")
         max_cmpspertok = df["cmpspertok"][mark_rank]
         print(f"Compounds per token @{mark_rank}: {max_cmpspertok}")
-        plt.axhline(max_cmpspertok, linestyle="--", color="red")
+        plt.plot(mark_rank, max_cmpspertok, 'ro') 
         freq_at_max_cmpspertok = df["freq"][mark_rank]
         print(f"Remaining proportion @{mark_rank}: {freq_at_max_cmpspertok}")
-        plt.axhline(freq_at_max_cmpspertok, linestyle="--", color="red")
+        plt.plot(mark_rank, freq_at_max_cmpspertok, 'ro') 
+
+    plt.legend(labels, loc='upper right')
+    plt.ylim(0, 1)
+    plt.ylabel('Proportion')
+    plt.xlabel('Rank')
+    if cnt:
+        rank = df[df["cnt"] == cnt].index.min()
+        print("Max rank:", rank)
+        plt.xlim(0, rank)
 
     for m in mark:
         print("Mark at:", m)
@@ -45,12 +53,6 @@ def main(inf, outf, cmps_only, logx, mark, mark_max, cnt):
         print("Rank at max compounds per token:", max_rank)
         mark_at(max_rank)
 
-    plt.legend(labels, loc='upper right')
-    plt.ylim(0, 1)
-    if cnt:
-        rank = df[df["cnt"] == cnt].index.min()
-        print("Max rank:", rank)
-        plt.xlim(0, rank)
     plt.savefig(outf, bbox_inches="tight")
 
 
